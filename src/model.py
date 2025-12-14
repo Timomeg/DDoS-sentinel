@@ -37,27 +37,28 @@ def group_src_port(port):
         else:
             return 2
 
-usecols = ["Label", "Init Bwd Win Byts", "Init Fwd Win Byts", "Protocol", "Dst Port", "Src Port"]
-df = pd.read_csv("C:/Users/Тим/PythonProjects/DDoS-sentinel/data/final_dataset.csv", usecols=usecols)
-print("Dataframe has been read")
+# usecols = ["Label", "Init Bwd Win Byts", "Init Fwd Win Byts", "Protocol", "Dst Port", "Src Port"]
+# df = pd.read_csv("./data/final_dataset.csv", usecols=usecols)
+# print("Dataframe has been read")
 
-df_processed = df.copy()
-df_processed['Dst Port Group'] = df['Dst Port'].apply(group_dst_port)
-df_processed['Src Port Group'] = df['Src Port'].apply(group_src_port)
-df_processed = df_processed.drop(['Dst Port', 'Src Port'], axis=1)
+# df_processed = df.copy()
+# df_processed['Dst Port Group'] = df['Dst Port'].apply(group_dst_port)
+# df_processed['Src Port Group'] = df['Src Port'].apply(group_src_port)
+# df_processed = df_processed.drop(['Dst Port', 'Src Port'], axis=1)
 
-df_goal = df_processed['Label'].apply(sort_label)
-df_processed = df_processed.drop(['Label'], axis=1)
+# df_goal = df_processed['Label'].apply(sort_label)
+# df_processed = df_processed.drop(['Label'], axis=1)
 
-X_train, X_valid, y_train, y_valid = train_test_split(df_processed, df_goal, random_state=1)
+# X_train, X_valid, y_train, y_valid = train_test_split(df_processed, df_goal, random_state=1)
 
 # my_model = RandomForestClassifier(random_state=1, n_jobs=6, n_estimators=50, max_depth=3, min_samples_split=50)
 # my_model = LogisticRegression(random_state=1, n_jobs=6)
 # my_model = GradientBoostingClassifier(random_state=1, n_jobs=6, n_estimators=100, min_samples_split=50)
 # my_model.fit(X_train, y_train)
+# print(X_train.columns)
 # predictions = my_model.predict(X_valid)
 # print("Average_precision_score: " + str(average_precision_score(y_valid, predictions)))
 # joblib.dump(my_model, 'my_sklearn_model.pkl')
-loaded_object = joblib.load('my_sklearn_model.pkl')
-print(loaded_object)
-print(f" Average preсision: {average_precision_score(y_valid, loaded_object.predict(X_valid))}")
+# loaded_object = joblib.load('my_sklearn_model.pkl')
+# print(loaded_object)
+# print(f" Average preсision: {average_precision_score(y_valid, loaded_object.predict(X_valid))}")
